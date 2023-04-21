@@ -1,0 +1,16 @@
+.weather-item {
+}
+.weather-item_title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.weather-item_title img {
+  position: absolute;
+  top: -30%;
+  left: 55%;
+  width: 100px;
+  height: 100px;
+}
