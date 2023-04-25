@@ -7,6 +7,7 @@ import WeatherItem from "../../components/CurrentWeather/CurrentWeather";
 import { AppStore } from "../../store/store";
 
 import "./Home.css";
+import CurrentWeather from "../../components/CurrentWeather/CurrentWeather";
 const Home = (): JSX.Element => {
   const loading = useSelector((state: AppStore) => state.app.isLoading);
   // console.log(loading);
@@ -16,8 +17,8 @@ const Home = (): JSX.Element => {
   return (
     <div>
       {loading && <span>loading...</span>}
-      {/* <SearchBar />
-      <WeatherItem /> */}
+      {/* <SearchBar /> */}
+      <CurrentWeather />
     </div>
   );
 };

@@ -4,7 +4,7 @@ export interface IAppState {
   isLoading: boolean;
 }
 const initialState = {
-  isLoading: true,
+  isLoading: false,
 };
 const appSlice = createSlice({
   name: "app",
