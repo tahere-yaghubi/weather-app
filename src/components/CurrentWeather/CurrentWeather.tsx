@@ -3,8 +3,7 @@ import { Box, Typography } from "@mui/material";
 
 import { WiStrongWind, WiRaindrop, WiUmbrella } from "weather-icons-react";
 import clear_day from "../../../public/all/clear-day.svg";
-import Location from "../Location/Location";
-import Temp from "../Temp/Temp";
+
 
 import "./CurrentWeather.css";
 function CurrentWeather() {
