@@ -1,36 +1,56 @@
-import { weatherData } from "../../adapters/weatherData.types";
+import { fetchWeather, transformWeatherData } from "../fetchWeather";
+import { WeatherData } from "../../adapters/weatherData.types";
+import { createSlice } from "@reduxjs/toolkit";
 
+export type weatherState = {
+  weatherData: WeatherData;
+  isError: boolean;
+};
 
-export type weatherState ={
-weatherData : weatherData;
-isError:boolean
-} 
+const initialState: weatherState = {
+  weatherData: {
+    main: {
+      feels_like: 0,
+      humidity: 0,
+      pressure: 0,
+      temp: 0,
+      temp_max: 0,
+      temp_min: 0,
+    },
+    name: "",
+    sys: {
+      country: "",
+      sunrise: 0,
+      sunset: 0,
+    },
+    weather: {
+      id: 200,
+      main: "",
+      description: "",
+      icon: "",
+    },
+    wind: {
+      deg: 0,
+      speed: 0,
+    },
+  },
+  isError: false,
+};
 
+const weatherSlice = createSlice({
+  name: "weather",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchWeather.fulfilled, (state, action) => {
+        const res = transformWeatherData(action.payload);
+        state.weatherData = res.weather;
+      })
+      .addCase(fetchWeather.rejected, (state, action) => {
+        state.isError = true;
+      });
+  },
+});
 
-
-
-
-const initialState:weatherState ={
-weatherData:{
-weather :{},
-main:{},
-wind:{},
-sys:{},
-name: ""
-},
-isError:false
-}
-
-
-
-
-
-const weatherSlice = {
-name : "",
-initialState,
-reducer :{},
-extraReducer : (builder)=>{
-builder,
-
-}
-}
+export default weatherSlice.reducer;

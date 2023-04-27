@@ -8,23 +8,23 @@ import { AppStore } from "../../store/store";
 
 import "./Home.css";
 import CurrentWeather from "../../components/CurrentWeather/CurrentWeather";
-import { fetch_weatherData } from "../../adapters/fetch_weatherData";
+import { fetchWeatherData } from "../../store/fetchWeather";
 import { Container } from "@mui/material";
 const Home = (): JSX.Element => {
   const loading = useSelector((state: AppStore) => state.app.isLoading);
   // console.log(loading);
   useEffect(() => {
-    fetch_weatherData("Rome");
+    fetchWeatherData("Rome");
   }, []);
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
   return (
-    <Container maxWidth="sm"> 
-    <div>
-      {loading && <span>loading...</span>}
-      {/* <SearchBar /> */}
-      <CurrentWeather />
-    </div>
+    <Container maxWidth="sm">
+      <div>
+        {loading && <span>loading...</span>}
+        {/* <SearchBar /> */}
+        <CurrentWeather />
+      </div>
     </Container>
   );
 };
