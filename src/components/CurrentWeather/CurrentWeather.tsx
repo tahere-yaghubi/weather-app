@@ -7,12 +7,12 @@ import "./CurrentWeather.css";
 import { useSelector } from "react-redux";
 import { AppStore } from "../../store/store";
 const CurrentWeather = (): JSX.Element => {
-  const { weather, isError, isInitial
-   } = useSelector((store: AppStore) => ({
+  const { weather, isError, isInitial } = useSelector((store: AppStore) => ({
     weather: store.weather.weatherData,
     isError: store.weather.isError,
     isInitial: store.app.isInitial,
   }));
+  // const { name, main, system, weather, wind } = weather;
   console.log(weather);
 
   useEffect(() => {
@@ -65,75 +65,69 @@ const CurrentWeather = (): JSX.Element => {
             16{" "}
           </Typography>
         </Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between",
+            justifyContent: "center",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <WiStrongWind size={24} color="#000" />
+          <WiStrongWind size={24} color="#000" />
 
-            <Typography
-              component="h5"
-              variant="h5"
-              sx={{ marginBottom: "3px" }}
-            >
-              23
-            </Typography>
-            <Typography variant="subtitle1" ml={1}>
-              km/h
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+          <Typography
+            component="h5"
+            variant="h5"
+            sx={{ marginBottom: "3px", padding: "7px" }}
           >
-            <WiUmbrella size={24} color="#000" />
-            <Typography
-              component="h5"
-              variant="h5"
-              sx={{ marginBottom: "3px" }}
-            >
-              79
-            </Typography>
-            <Typography variant="subtitle1" ml={1}>
-              %
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <WiRaindrop size={24} color="#000" />
-            <Typography
-              component="h5"
-              variant="h5"
-              sx={{ marginBottom: "3px" }}
-            >
-              73
-            </Typography>
-            <Typography variant="subtitle1" ml={1}>
-              %
-            </Typography>
-          </Box>
+            23
+          </Typography>
+          <Typography variant="subtitle1" ml={1}>
+            km/h
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <WiUmbrella size={24} color="#000" />
+          <Typography component="h5" variant="h5" sx={{ padding: "7px" }}>
+            79
+          </Typography>
+          <Typography variant="subtitle1" ml={1}>
+            %
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <WiRaindrop size={24} color="#000" />
+          <Typography component="h5" variant="h5" sx={{ padding: "7px" }}>
+            73
+          </Typography>
+          <Typography variant="subtitle1" ml={1}>
+            %
+          </Typography>
         </Box>
       </Box>
     </Box>

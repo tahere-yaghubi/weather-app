@@ -1,7 +1,7 @@
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
-import { Container, InputAdornment, TextField } from "@mui/material";
+import { Box, Container, InputAdornment, TextField } from "@mui/material";
 
 function SearchBar() {
   const Search = styled("div")(({ theme }) => ({
@@ -44,23 +44,29 @@ function SearchBar() {
   //     },
   //   }));
   return (
-    <Container sx={{ width: "400px", margin: "0 auto" }}>
+    <Box mt={3}>
       <TextField
-        // id="search"
-        type="search"
-        // label="Search"
-        // value={searchTerm}
-        // onChange={handleChange}
-        sx={{ width: 600, borderRadius: "15px" }}
+        id="outlined-controlled"
+        // label="Controlled"
+        // value={name}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <SearchIcon />
+              <SearchIcon sx={{ color: "#E49055" }} />
             </InputAdornment>
           ),
         }}
+        sx={{
+          width: "100%",
+          background: "#F6F6F6",
+          border: "#fff !important",
+          borderRadius: "10px",
+        }}
+        // onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+        //   setName(event.target.value);
+        // }}
       />
-    </Container>
+    </Box>
   );
 }
 
