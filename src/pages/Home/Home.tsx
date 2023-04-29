@@ -22,7 +22,7 @@ const Home = (): JSX.Element => {
     <Container maxWidth="sm">
       <div>
         {loading && <span>loading...</span>}
-        {/* <SearchBar /> */}
+        <SearchBar />
         <CurrentWeather />
       </div>
     </Container>
