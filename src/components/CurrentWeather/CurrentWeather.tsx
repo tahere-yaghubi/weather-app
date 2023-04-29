@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-
 import { WiStrongWind, WiRaindrop, WiUmbrella } from "weather-icons-react";
-import clear_day from "../../../public/all/clear-day.svg";
-
+import clear_day from "../../assets/all/clear-day.svg";
 
 import "./CurrentWeather.css";
-function CurrentWeather() {
+import { useSelector } from "react-redux";
+import { AppStore } from "../../store/store";
+const CurrentWeather = (): JSX.Element => {
+  const { weather, isError, isInitial
+   } = useSelector((store: AppStore) => ({
+    weather: store.weather.weatherData,
+    isError: store.weather.isError,
+    isInitial: store.app.isInitial,
+  }));
+  console.log(weather);
+
+  useEffect(() => {
+    if (isError) {
+      console.log("No Data found for this area");
+    }
+  }, [isError]);
   return (
     <Box
       sx={{
@@ -125,6 +138,6 @@ function CurrentWeather() {
       </Box>
     </Box>
   );
-}
+};
 
 export default CurrentWeather;

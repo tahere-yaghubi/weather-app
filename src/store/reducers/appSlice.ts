@@ -15,11 +15,11 @@ const appSlice = createSlice({
     setIsLoading: (state: IAppState, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    setInitial: (state: IAppState, action: PayloadAction<boolean>) => {
+    setIsInitial: (state: IAppState, action: PayloadAction<boolean>) => {
       state.isInitial = action.payload;
     },
   },
 });
-export const { setIsLoading, setInitial } = appSlice.actions;
+export const { setIsLoading, setIsInitial } = appSlice.actions;
 
 export default appSlice.reducer;

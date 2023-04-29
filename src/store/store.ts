@@ -5,7 +5,7 @@ import weatherSlice from "./reducers/weatherSlice";
 const store = configureStore({
   reducer: {
     app: appSlice,
-    wether: weatherSlice,
+    weather: weatherSlice,
   },
 });
 export type AppStore = ReturnType<typeof store.getState>;

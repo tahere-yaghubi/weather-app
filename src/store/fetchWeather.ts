@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { setIsLoading, setInitial } from "./reducers/appSlice";
+import { setIsLoading, setIsInitial } from "./reducers/appSlice";
 import axios from "axios";
 import { funcWeatherData } from "../adapters/funcWeatherData";
 import { WeatherData } from "../adapters/weatherData.types";
@@ -13,7 +13,7 @@ import { WeatherData } from "../adapters/weatherData.types";
 //       const res = await Promise.all([funcWeatherData(city)]);
 //       dispatch(setIsLoading(false));
 //       if (res[0].status == 200) {
-//         dispatch(setInitial(false));
+//         dispatch(setIsInitial(false));
 
 //         return res;
 //       } else {
@@ -36,7 +36,7 @@ export const fetchWeather = createAsyncThunk(
       dispatch(setIsLoading(false));
 
       if (res[0].cod === 200) {
-        dispatch(setInitial(false));
+        dispatch(setIsInitial(false));
         return res;
       }
       return rejectWithValue(res[0].message);
