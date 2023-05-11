@@ -1,54 +1,48 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import { Box, Container, InputAdornment, TextField } from "@mui/material";
+import { fetchLocation } from "../../store/fetchLocation";
+import axios from "axios";
 
-function SearchBar() {
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  }));
+const SearchBar = () => {
+  const suggestionRef = useRef(null);
+  const [location, setLocation] = useState("");
+  // const [suggestion, setSuggestion] = useState<string[]>([]);
+  // const [showSuggestion, setShowSuggestion] = useState(false);
 
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
+  const baseUrl = `https://api.openweathermap.org/data/2.5`;
+  let url = `${baseUrl}/weather?q=${location}&appid=de755390daadcf7a29453769e6ee6ba7`;
 
-  //   const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  //     color: "inherit",
-  //     "& .MuiInputBase-input": {
-  //       padding: theme.spacing(1, 1, 1, 0),
-  //       // vertical padding + font size from searchIcon
-  //       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-  //       transition: theme.transitions.create("width"),
-  //       width: "100%",
-  //       [theme.breakpoints.up("md")]: {
-  //         width: "20ch",
-  //       },
-  //     },
-  //   }));
+  const onsetLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLocation(event.target.value);
+  };
+
+  // const fetchLocation = (location: string) => {
+  //   axios
+  //     .get(url)
+  //     .then((res) => {
+  //       if (res?.data) {
+  //         console.log(res.data);
+  //       }
+  //     })
+  //     .catch((err: string) => console.error(err));
+  // };
+  console.log(location, "location");
+
+  useEffect(() => {
+    if (!location) {
+      return;
+    }
+    fetchLocation(location);
+  }, [location]);
+
   return (
     <Box mt={3}>
       <TextField
         id="outlined-controlled"
         // label="Controlled"
-        // value={name}
+        value={location}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -62,12 +56,10 @@ function SearchBar() {
           border: "#fff !important",
           borderRadius: "10px",
         }}
-        // onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-        //   setName(event.target.value);
-        // }}
+        onChange={onsetLocation}
       />
     </Box>
   );
-}
+};
 
 export default SearchBar;

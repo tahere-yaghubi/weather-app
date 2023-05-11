@@ -6,6 +6,7 @@ import clear_day from "../../assets/all/clear-day.svg";
 import "./CurrentWeather.css";
 import { useSelector } from "react-redux";
 import { AppStore } from "../../store/store";
+import Location from "../Location/Location";
 const CurrentWeather = (): JSX.Element => {
   const { weather, isError, isInitial } = useSelector((store: AppStore) => ({
     weather: store.weather.weatherData,
@@ -14,6 +15,7 @@ const CurrentWeather = (): JSX.Element => {
   }));
   // const { name, main, system, weather, wind } = weather;
   console.log(weather);
+  console.log(Location);
 
   useEffect(() => {
     if (isError) {
