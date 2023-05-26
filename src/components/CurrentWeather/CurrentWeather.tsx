@@ -7,15 +7,19 @@ import "./CurrentWeather.css";
 import { useSelector } from "react-redux";
 import { AppStore } from "../../store/store";
 import Location from "../Location/Location";
+import useLocation from "../../hooks/services/useLocation";
 const CurrentWeather = (): JSX.Element => {
+  const { onSetLocation, suggestion, searchTerm } = useLocation();
+  console.log(suggestion, "suggestion");
+
   const { weather, isError, isInitial } = useSelector((store: AppStore) => ({
     weather: store.weather.weatherData,
     isError: store.weather.isError,
     isInitial: store.app.isInitial,
   }));
   // const { name, main, system, weather, wind } = weather;
-  console.log(weather);
-  console.log(Location);
+  // console.log(weather);
+  // console.log(Location);
 
   useEffect(() => {
     if (isError) {
@@ -44,7 +48,7 @@ const CurrentWeather = (): JSX.Element => {
         }}
       >
         <Typography component="h5" variant="h5" fontStyle={"italic"}>
-          Kiel, Germany
+          {/* {suggestion} */}
         </Typography>
         <Typography color={"#949399"}>light rain</Typography>
       </Box>
